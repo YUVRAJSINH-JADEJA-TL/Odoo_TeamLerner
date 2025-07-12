@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -68,3 +69,13 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+=======
+# Odoo_TeamLerner
+
+#ReWear – Community Clothing Exchange 
+Overview: 
+Develop ReWear, a web-based platform that enables users to exchange unused clothing 
+through direct swaps or a point-based redemption system. The goal is to promote sustainable 
+fashion and reduce textile waste by encouraging users to reuse wearable garments instead of 
+discarding them.
+>>>>>>> f21b47e189607dde994abe1291bd02bb9051c913
