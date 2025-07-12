@@ -11,9 +11,36 @@ export default function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    login({ email });
-    navigate('/dashboard');
+  
+    try {
+      const res = await fetch('http://localhost:5000/api/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ email, password })
+      });
+  
+      const data = await res.json();
+  
+      if (!res.ok) {
+        alert(data.msg || 'Login failed');
+        return;
+      }
+  
+      // Store JWT in localStorage (or cookie if needed)
+      localStorage.setItem('token', data.token);
+      
+      // Save user context (if using AuthContext properly)
+      login(data.user);
+  
+      navigate('/home');
+    } catch (err) {
+      console.error(err);
+      alert('An error occurred. Please try again.');
+    }
   };
+  
 
   return (
     <div

@@ -15,16 +15,42 @@ export default function Register() {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+  
     if (form.password !== form.confirmPassword) {
       alert('Passwords do not match!');
       return;
     }
-
-    alert('Registered successfully!');
-    navigate('/dashboard');
+  
+    try {
+      const res = await fetch('http://localhost:5000/api/auth/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: form.name,
+          email: form.email,
+          password: form.password,
+        }),
+      });
+  
+      const data = await res.json();
+  
+      if (!res.ok) {
+        alert(data.msg || 'Registration failed');
+        return;
+      }
+  
+      alert('Registered successfully!');
+      navigate('/login');
+    } catch (err) {
+      console.error(err);
+      alert('Something went wrong. Please try again later.');
+    }
   };
+  
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-cover bg-center px-4 sm:px-6 md:px-10 lg:px-20" style={{ backgroundImage: "url('/bg.jpg')" }}>

@@ -31,3 +31,14 @@ exports.login = async (req, res) => {
     res.status(500).json({ msg: err.message });
   }
 };
+
+// const User = require('../models/User');
+
+exports.getProfile = async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id).select('name email points');
+    res.json(user);
+  } catch (err) {
+    res.status(500).json({ msg: err.message });
+  }
+};
